@@ -84,19 +84,19 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
 
     private getScripts(): string {
         const scripts = [
-            this.getMediaPath('build/three.js'), 
-            this.getMediaPath('examples/js/libs/inflate.min.js'),
-            this.getMediaPath('examples/js/libs/dat.gui.min.js'),
-            this.getMediaPath('examples/js/controls/OrbitControls.js'),
-            this.getMediaPath('examples/js/loaders/ColladaLoader.js'),
-            this.getMediaPath('examples/js/loaders/FBXLoader.js'),
-            this.getMediaPath('examples/js/loaders/TDSLoader.js'),
-            this.getMediaPath('examples/js/loaders/OBJLoader.js'),
-            this.getMediaPath('examples/js/loaders/STLLoader.js'),
-            this.getMediaPath('viewer.js')
+            'build/three.js', 
+            'examples/js/libs/inflate.min.js',
+            'examples/js/libs/dat.gui.min.js',
+            'examples/js/controls/OrbitControls.js',
+            'examples/js/loaders/ColladaLoader.js',
+            'examples/js/loaders/FBXLoader.js',
+            'examples/js/loaders/TDSLoader.js',
+            'examples/js/loaders/OBJLoader.js',
+            'examples/js/loaders/STLLoader.js',
+            'viewer.js'
         ];
         return scripts
-            .map(source => `<script src="${source}"></script>`)
+            .map(source => `<script src="${this.getMediaPath(source)}"></script>`)
             .join('\n');
     }
 
