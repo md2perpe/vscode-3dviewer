@@ -19,26 +19,20 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
         MeshPreviewContentProvider.s_instance = this;
 
         this._disposables.push(
-            workspace.registerTextDocumentContentProvider('preview3dfile', this)
-        );
 
-        this._disposables.push(
-            workspace.registerTextDocumentContentProvider('preview3dhttp', this)
-        );
+            workspace.registerTextDocumentContentProvider('preview3dfile',  this),
+            workspace.registerTextDocumentContentProvider('preview3dhttp',  this),
+            workspace.registerTextDocumentContentProvider('preview3dhttps', this),
 
-        this._disposables.push(
-            workspace.registerTextDocumentContentProvider('preview3dhttps', this)
-        );
-
-        this._disposables.push( commands.registerCommand("3dviewer.openInViewer", (fileUri: Uri) => {
+            commands.registerCommand("3dviewer.openInViewer", (fileUri: Uri) => {
             if (fileUri) {
                 let previewUri = fileUri.with({scheme: 'preview3dfile'});
                 commands.executeCommand('vscode.previewHtml', previewUri, ViewColumn.Active, "3D Mesh Preview");
                 console.log(previewUri.toString());
             }
-        }));
+            }),
 
-        this._disposables.push( commands.registerCommand("3dviewer.openUrlInViewer", () => {
+            commands.registerCommand("3dviewer.openUrlInViewer", () => {
             window.showInputBox({prompt: "Enter URL to open", placeHolder: "http://..."}).then((value) => {
                 if (value) {
                     let fileUri = Uri.parse(value);
@@ -47,7 +41,9 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
                     console.log(previewUri.toString());
                 }
             })
-        }));
+            }),
+            
+        );
     }
 
     static get instance() {
