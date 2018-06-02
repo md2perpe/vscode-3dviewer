@@ -13,10 +13,7 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
     constructor(
         private context: ExtensionContext
     ) {
-        if(MeshPreviewContentProvider.s_instance) {
-            MeshPreviewContentProvider.s_instance.dispose();
-        }
-        MeshPreviewContentProvider.s_instance = this;
+        MeshPreviewContentProvider.instance = this;
 
         this._disposable = Disposable.from(
 
@@ -27,37 +24,41 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
             workspace.registerTextDocumentContentProvider('preview3dhttps', this),
 
             commands.registerCommand("3dviewer.openInViewer", (fileUri: Uri) => {
-            if (fileUri) {
-                let previewUri = fileUri.with({scheme: 'preview3dfile'});
-                commands.executeCommand('vscode.previewHtml', previewUri, ViewColumn.Active, "3D Mesh Preview");
-                console.log(previewUri.toString());
-            }
-            }),
-
-            commands.registerCommand("3dviewer.openUrlInViewer", () => {
-            window.showInputBox({prompt: "Enter URL to open", placeHolder: "http://..."}).then((value) => {
-                if (value) {
-                    let fileUri = Uri.parse(value);
-                    let previewUri = fileUri.with({scheme: 'preview3d' + fileUri.scheme});
+                if (fileUri) {
+                    let previewUri = fileUri.with({scheme: 'preview3dfile'});
                     commands.executeCommand('vscode.previewHtml', previewUri, ViewColumn.Active, "3D Mesh Preview");
                     console.log(previewUri.toString());
                 }
-            })
+            }),
+
+            commands.registerCommand("3dviewer.openUrlInViewer", () => {
+                window.showInputBox({prompt: "Enter URL to open", placeHolder: "http://..."}).then((value) => {
+                    if (value) {
+                        let fileUri = Uri.parse(value);
+                        let previewUri = fileUri.with({scheme: 'preview3d' + fileUri.scheme});
+                        commands.executeCommand('vscode.previewHtml', previewUri, ViewColumn.Active, "3D Mesh Preview");
+                        console.log(previewUri.toString());
+                    }
+                })
             }),
             
         );
     }
 
-    static get instance() {
-        return MeshPreviewContentProvider.s_instance;
+    public dispose(): void {
+        MeshPreviewContentProvider.instance = null;
+        this._disposable.dispose();
     }
 
-    public dispose(): void {
-        if(MeshPreviewContentProvider.s_instance) {
+    private static set instance(instance: MeshPreviewContentProvider) {
+        if (MeshPreviewContentProvider.s_instance) {
             MeshPreviewContentProvider.s_instance.dispose();
-            MeshPreviewContentProvider.s_instance = null;
         }
-        this._disposable.dispose();
+        MeshPreviewContentProvider.s_instance = instance;
+    }
+
+    private static get instance() {
+        return MeshPreviewContentProvider.s_instance;
     }
 
     private getMediaPath(mediaFile: string): string {
