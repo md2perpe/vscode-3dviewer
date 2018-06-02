@@ -12,6 +12,6 @@ export function activate(context: ExtensionContext) {
     
     _disposables.push( new MeshPreviewContentProvider(context) );
 
-    _disposables.push( new EditorProvider(context) );
+    // _disposables.push( new EditorProvider(context) );
 
 }

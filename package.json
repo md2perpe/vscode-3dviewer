@@ -32,10 +32,7 @@
     ],
     "activationEvents": [
         "onCommand:3dviewer.openInViewer",
-        "onCommand:3dviewer.openUrlInViewer",
-        "onCommand:3dviewer.openInEditor",
-        "onCommand:3dviewer.openUrlInEditor",
-        "onCommand:3dviewer.openEditor"
+        "onCommand:3dviewer.openUrlInViewer"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -61,21 +58,6 @@
                 "command": "3dviewer.openUrlInViewer",
                 "title": "Open URL in Viewer",
                 "category": "3DViewer"
-            },
-            {
-                "command": "3dviewer.openInEditor",
-                "title": "Open in Editor",
-                "category": "3DViewer"
-            },
-            {
-                "command": "3dviewer.openUrlInEditor",
-                "title": "Open URL in Editor",
-                "category": "3DViewer"
-            },
-            {
-                "command": "3dviewer.openEditor",
-                "title": "Open THREE.js Editor",
-                "category": "3DViewer"
             }
         ],
         "menus": {
@@ -83,19 +65,11 @@
                 {
                     "command": "3dviewer.openInViewer",
                     "when": "false"
-                },
-                {
-                    "command": "3dviewer.openInEditor",
-                    "when": "false"
                 }
             ],
             "explorer/context": [
                 {
                     "command": "3dviewer.openInViewer",
-                    "when": "resourceLangId == 3dformat"
-                },
-                {
-                    "command": "3dviewer.openInEditor",
                     "when": "resourceLangId == 3dformat"
                 }
             ]
