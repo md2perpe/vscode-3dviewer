@@ -309,10 +309,11 @@ function generateMaterials() {
         path + 'pz' + format, path + 'nz' + format
     ];
     var cubeTextureLoader = new THREE.CubeTextureLoader();
+
     var reflectionCube = cubeTextureLoader.load( urls );
     reflectionCube.format = THREE.RGBFormat;
+
     var refractionCube = cubeTextureLoader.load( urls );
-    reflectionCube.format = THREE.RGBFormat;
     refractionCube.mapping = THREE.CubeRefractionMapping;
 
     editorScene.background = reflectionCube;
