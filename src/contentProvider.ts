@@ -7,7 +7,7 @@ import * as path from 'path';
 export default class MeshPreviewContentProvider implements TextDocumentContentProvider {
     
     private static s_instance: MeshPreviewContentProvider = null;
-    private _disposables: Disposable[] = [];    
+    private _disposable: Disposable;
     private _onDidChange = new EventEmitter<Uri>();
 
     constructor(
@@ -18,7 +18,9 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
         }
         MeshPreviewContentProvider.s_instance = this;
 
-        this._disposables.push(
+        this._disposable = Disposable.from(
+
+            this._onDidChange,
 
             workspace.registerTextDocumentContentProvider('preview3dfile',  this),
             workspace.registerTextDocumentContentProvider('preview3dhttp',  this),
@@ -51,12 +53,11 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
     }
 
     public dispose(): void {
-        this._onDidChange.dispose();
         if(MeshPreviewContentProvider.s_instance) {
             MeshPreviewContentProvider.s_instance.dispose();
             MeshPreviewContentProvider.s_instance = null;
         }
-        this._disposables.forEach(d => d.dispose());
+        this._disposable.dispose();
     }
 
     private getMediaPath(mediaFile: string): string {
