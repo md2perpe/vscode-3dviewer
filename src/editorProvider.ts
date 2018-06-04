@@ -5,7 +5,7 @@ import { Disposable, Uri, workspace, ExtensionContext, commands, ViewColumn, win
 import * as Path from 'path';
 
 export default class EditorProvider {
-    
+
     private static s_instance?: EditorProvider = null;
     private static s_editorUri?: Uri = null;
     private _disposables: Disposable[] = [];
@@ -18,7 +18,7 @@ export default class EditorProvider {
         }
         EditorProvider.s_instance = this;
         EditorProvider.s_editorUri = Uri.file(context.asAbsolutePath(Path.join('media', 'editor', 'index.html')));
-        
+
         this._disposables.push( commands.registerCommand("3dviewer.openEditor", () => {
             commands.executeCommand('vscode.previewHtml', EditorProvider.s_editorUri, ViewColumn.Active, "THREE.js Editor").then( (e) => {
                 this.patchEditor();
@@ -67,8 +67,8 @@ export default class EditorProvider {
                 window.fileLoader.crossOrigin = '';
                 window.fileLoader.setResponseType( 'arraybuffer' );
             }
-            window.fileLoader.load('${uri.toString()}', (data) => { 
-                editor.loader.loadFile( new File([data], '${Path.basename(uri.fsPath)}'), '${Path.dirname(uri.toString())}/' ) 
+            window.fileLoader.load('${uri.toString()}', (data) => {
+                editor.loader.loadFile( new File([data], '${Path.basename(uri.fsPath)}'), '${Path.dirname(uri.toString())}/' )
             });
         `);
     }
@@ -79,7 +79,7 @@ export default class EditorProvider {
 
     // Javascript Functions to replace on client in order to patch the editor
     private patchEditor(): Thenable<boolean> {
-        return Promise.all<boolean, boolean, boolean>([
+        return Promise.all([
             // VSCode webview doesn't support modal window
             EditorProvider.sendCommand('window.alert = window.parent.alert'),
             EditorProvider.sendCommand('window.confirm = window.parent.confirm'),
