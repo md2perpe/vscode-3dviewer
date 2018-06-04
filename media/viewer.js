@@ -28,8 +28,9 @@ function init() {
 
     // controls, camera
     controls = new THREE.OrbitControls(camera, renderer.domElement);
-    controls.target.set(0, 12, 0);
-    camera.position.set(2, 18, 28);
+    controls.target = new THREE.Vector3(0, 0, 0);
+    camera.position = new THREE.Vector3(0, -1, 0);
+    camera.lookAt(new THREE.Vector3(0, 0, 0));
     controls.update();
 
     // model
