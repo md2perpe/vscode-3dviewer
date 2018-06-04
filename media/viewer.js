@@ -46,6 +46,21 @@ function init() {
     loader.load(fileToLoad, function (file) {
         var object = new THREE.Mesh(file);
         mainScene.add(object);
+
+        var bbox = new THREE.BoxHelper(object, new THREE.Color(0xffff00));
+
+        if (bbox.geometry) {
+            bbox.geometry.computeBoundingSphere();
+            if (bbox.geometry.boundingSphere) {
+                let center = bbox.geometry.boundingSphere.center;
+                let radius = bbox.geometry.boundingSphere.radius;
+                controls.target = center;
+                camera.position.set(center.x, center.y - 1.2*radius, center.z);
+                camera.updateProjectionMatrix();
+                controls.update();
+            }
+        }
+
     });
 
     window.addEventListener('resize', onWindowResize, false);
