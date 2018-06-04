@@ -3,14 +3,10 @@ var controls;
 var camera, renderer, light;
 var mainScene;
 
-var clock = new THREE.Clock();
-
-var mixers = [];
-
 init();
 
 function init() {
-    
+
     var container = document.createElement('div');
     document.body.appendChild(container);
 
@@ -52,7 +48,7 @@ function init() {
     });
 
     window.addEventListener('resize', onWindowResize, false);
-    
+
 
     // Lights
     [ [1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1] ].forEach((p) => {
@@ -84,16 +80,7 @@ function onWindowResize() {
 
 }
 
-//
-
 function animate() {
     requestAnimationFrame(animate);
-
-    if (mixers.length > 0) {
-        for (var i = 0; i < mixers.length; i++) {
-            mixers[i].update(clock.getDelta());
-        }
-    }
-
     renderer.render(mainScene, camera);
 }
