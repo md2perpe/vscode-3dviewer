@@ -1,28 +1,24 @@
 {
     "name": "vscode-3dviewer",
-    "displayName": "3D Viewer for VSCode",
-    "description": "Preview 3D models in VSCode",
-    "version": "0.1.0",
-    "publisher": "slevesque",
+    "displayName": "Simple STL Viewer for VS Code",
+    "description": "Preview STL models in VS Code",
+    "version": "1.0.0",
+    "publisher": "md2perpe",
     "license": "LICENSE.md",
-    "icon": "icon.png",
     "bugs": {
-        "url": "https://github.com/stef-levesque/vscode-3dviewer/issues"
+        "url": "https://github.com/md2perpe/vscode-3dviewer/issues"
     },
-    "homepage": "https://github.com/stef-levesque/vscode-3dviewer",
+    "homepage": "https://github.com/md2perpe/vscode-3dviewer",
     "repository": {
         "type": "git",
-        "url": "https://github.com/stef-levesque/vscode-3dviewer.git"
-    },
-    "galleryBanner": {
-        "color": "#0075c3",
-        "theme": "dark"
+        "url": "https://github.com/md2perpe/vscode-3dviewer.git"
     },
     "engines": {
         "vscode": "^1.18.0"
     },
     "keywords": [
         "vscode",
+        "stl",
         "3d",
         "viewer",
         "webgl"
@@ -31,8 +27,8 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:3dviewer.openInViewer",
-        "onCommand:3dviewer.openUrlInViewer"
+        "onCommand:md2perpe.3dviewer.openInViewer",
+        "onCommand:md2perpe.3dviewer.openUrlInViewer"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -40,22 +36,18 @@
             {
                 "id": "3dformat",
                 "extensions": [
-                    ".3ds",
-                    ".dae",
-                    ".fbx",
-                    ".obj",
                     ".stl"
                 ]
             }
         ],
         "commands": [
             {
-                "command": "3dviewer.openInViewer",
+                "command": "md2perpe.3dviewer.openInViewer",
                 "title": "Open in Viewer",
                 "category": "3DViewer"
             },
             {
-                "command": "3dviewer.openUrlInViewer",
+                "command": "md2perpe.3dviewer.openUrlInViewer",
                 "title": "Open URL in Viewer",
                 "category": "3DViewer"
             }
@@ -63,13 +55,13 @@
         "menus": {
             "commandPalette": [
                 {
-                    "command": "3dviewer.openInViewer",
+                    "command": "md2perpe.3dviewer.openInViewer",
                     "when": "false"
                 }
             ],
             "explorer/context": [
                 {
-                    "command": "3dviewer.openInViewer",
+                    "command": "md2perpe.3dviewer.openInViewer",
                     "when": "resourceLangId == 3dformat"
                 }
             ]

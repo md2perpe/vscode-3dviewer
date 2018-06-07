@@ -23,7 +23,7 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
             workspace.registerTextDocumentContentProvider('preview3dhttp',  this),
             workspace.registerTextDocumentContentProvider('preview3dhttps', this),
 
-            commands.registerCommand("3dviewer.openInViewer", (fileUri: Uri) => {
+            commands.registerCommand("md2perpe.3dviewer.openInViewer", (fileUri: Uri) => {
                 if (fileUri) {
                     let previewUri = fileUri.with({scheme: 'preview3dfile'});
                     commands.executeCommand('vscode.previewHtml', previewUri, ViewColumn.Active, "3D Mesh Preview");
@@ -31,7 +31,7 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
                 }
             }),
 
-            commands.registerCommand("3dviewer.openUrlInViewer", () => {
+            commands.registerCommand("md2perpe.3dviewer.openUrlInViewer", () => {
                 window.showInputBox({prompt: "Enter URL to open", placeHolder: "http://..."}).then((value) => {
                     if (value) {
                         let fileUri = Uri.parse(value);
@@ -69,11 +69,6 @@ export default class MeshPreviewContentProvider implements TextDocumentContentPr
         let config = workspace.getConfiguration('3dviewer');
         let initialData = {
             fileToLoad: uri.toString(),
-            wireframe: config.get('wireframe', false),
-            background: config.get('background', '#8f8f8f'),
-            boundingBox: config.get('boundingBox', false),
-            grid: config.get('grid', true),
-            gridSize: config.get('gridSize', 32),
             near: config.get('near', 0.01),
             far: config.get('far', 1000000)
         }

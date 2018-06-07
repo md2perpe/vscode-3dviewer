@@ -1,5 +1,6 @@
 # The MIT License (MIT)
 **Copyright © 2017 Stef Levesque**
+**Copyright © 2018 Per Persson**
 
 * * *
 
