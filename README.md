@@ -2,59 +2,14 @@
 
 ## Description
 
-Preview 3D models in VSCode
+Simplified version of [3D Viewer for VSCode](https://marketplace.visualstudio.com/items?itemName=slevesque.vscode-3dviewer).
 
-## Main Features
+* Only shows STL files
+* No background image
+* No controls
+* No editor
 
-### Model Viewer
-Support multiple formats:
-* `3ds` 3D Studio Max
-* `dae` Collada digital asset exchange
-* `fbx` Filmbox
-* `stl` STereo-Lithography
-* `obj` Wavefront OBJ
-
-![sponza](images/sponza.png)  
-  
-
-Several parameters to tweak, like materials, rendering, transform  
-![teapot](images/teapot.png)  
-  
-
-Play animations
-![animation](images/animation.png)
-  
-
-Open models from disk or online  
-![online](images/online.png)
-  
-  ---
-  
-### THREE.js Editor
-Use the [THREE.js editor](https://threejs.org/editor/) directly inside VSCode  
-![editor](images/editor.png)
-  
-
-## Commands
-
-* From the context menu supported file in the explorer
-  * `Open in Editor`
-  * `Open in Viewer`
-* From the command palette
-  * `Open THREE.js Editor`
-  * `Open URL in Viewer`
-
-## Configuration
-
-|Name                   |Type      |Description
-|-----------------------|----------|------------
-|`3dviewer.wireframe`   |`boolean` |Display mesh in wireframe mode
-|`3dviewer.background`  |`string`  |Set the default background color (e.g. '#8f8f8f')
-|`3dviewer.boundingBox` |`boolean` |Display a bounding box around the model
-|`3dviewer.grid`        |`boolean` |Display a grid at the origin
-|`3dviewer.gridSize`    |`number`  |Set the size of the grid
-|`3dviewer.near`        |`number`  |Set the near plane distance
-|`3dviewer.far`         |`number`  |Set the far plane distance
+---
 
 ## Contributing
 
@@ -70,6 +25,7 @@ Visual Studio Code v1.18.0
 
 ## Credits
 
+* [3D Viewer for VSCode](https://marketplace.visualstudio.com/items?itemName=slevesque.vscode-3dviewer)
 * [Visual Studio Code](https://code.visualstudio.com/)
 * [THREE.js](https://threejs.org)
 * [dat.GUI](http://workshop.chromeexperiments.com/examples/gui/#1--Basic-Usage)
