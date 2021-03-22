@@ -1,0 +1,48 @@
+{
+	"name": "md2perpe-3dviewer",
+	"version": "2.0.0",
+	"publisher": "md2perpe",
+	"repository": "github:md2perpe/vscode-3dviewer",
+	"displayName": "Simple STL Viewer for VS Code",
+	"description": "Preview 3D meshes in VSCode",
+	"engines": {
+		"vscode": "^1.54.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"main": "./out/extension.js",
+	"activationEvents": [
+		"onCustomEditor:md2perpe.3dviewer"
+	],
+	"contributes": {
+		"customEditors": [
+			{
+				"viewType": "md2perpe.3dviewer",
+				"displayName": "3D Viewer",
+				"selector": [
+					{
+						"filenamePattern": "*.stl"
+					}
+				]
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"lint": "eslint src --ext ts"
+	},
+	"devDependencies": {
+		"@types/node": "^12.11.7",
+		"@types/three": "^0.126.0",
+		"@types/vscode": "^1.54.0",
+		"@typescript-eslint/eslint-plugin": "^4.14.1",
+		"@typescript-eslint/parser": "^4.14.1",
+		"eslint": "^7.19.0",
+		"typescript": "^4.2.3",
+		"vsce": "^1.87.0"
+	},
+	"dependencies": {}
+}
